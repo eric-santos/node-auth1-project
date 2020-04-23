@@ -5,7 +5,7 @@ const session = require("express-session");
 const restricted = require("./auth/restricted-middleware");
 const knexSessionStore = require("connect-session-knex")(session);
 
-// const UsersRouter = require("./routes/users-router.js");
+const UsersRouter = require("./routes/users-router.js");
 const AuthRouter = require("./auth/auth-router");
 
 const server = express();
@@ -35,7 +35,7 @@ server.use(express.json());
 server.use(cors());
 server.use(session(sessionConfig));
 
-// server.use("/api/users", restricted, UsersRouter);
+server.use("/api/users", restricted, UsersRouter);
 server.use("/api/auth", AuthRouter);
 
 module.exports = server;
